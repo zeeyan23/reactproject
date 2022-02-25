@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,34 +19,36 @@ function Form() {
   function changePassword(event) {
     setPassword(event.target.value);
   }
-  function buttonClicked(event){
-    if((name && email && password)!=""){
-      if(password.length>6){
-        setSuccess(true);
-        setFailure(false);
-        setErr(false);
+    function buttonClicked(event){
+      if((name && email && password)!=""){
+        if(password.length>6){
+            setSuccess(true);
+            setFailure(false);
+            setErr(false);
+          }
+        else{
+          setSuccess(false);
+          setErr(true);
+          setFailure(false);
+        }
       }
       else{
-        setErr(true);
-        setFailure(false);
+        setFailure(true);
       }
     }
-    else{
-      setFailure(true);
-    }
-  }
+  
   return (
        
-    <div className="form">
+      <div className="form">
       {success ? <div className="success-msg">Registered Successfully!!!</div> : null}
       {failure ? <div className="failure-msg">Error in Registering!!!</div> : null}
       {passerr ? <div className="pass-msg">Password length should be<br /> greater than 6!!!</div> : null}
-      {<h1>Register Here!!!</h1>}
-      <input onChange={changeName} type="text" value={name} placeholder="Enter Your Name" />
-      <input onChange={changeEmail} type="email" value={email} placeholder="Enter Your Email" />
-      <input onChange={changePassword} type="password" value={password} placeholder="Enter Your Password" />
-      <button type="button" onClick={buttonClicked}>Register</button>
-    </div>
+        <h1>Register Here!!!</h1>
+        <input onChange={changeName} type="text" value={name} placeholder="Enter Your Name" />
+        <input onChange={changeEmail} type="email" value={email} placeholder="Enter Your Email" required/>
+        <input onChange={changePassword} type="password" value={password} placeholder="Enter Your Password" required/>
+        <button type="button" onClick={buttonClicked}>Register</button>
+      </div>
   );
 }
 

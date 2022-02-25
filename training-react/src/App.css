@@ -1,7 +1,6 @@
 body{
   padding: 0px;
   margin: 0px;
-  
 }
 
 .form{
@@ -16,6 +15,7 @@ body{
   padding-right: 5em;
   padding-bottom: 5em;
   border-radius: 2em;
+  box-shadow: 4px 4px 5px black;
 }
 input{
   padding: 1em;
@@ -36,6 +36,12 @@ button{
   margin-top: 2em;
   font-size: large;
   cursor: pointer;
+  animation-name: example;
+  animation-duration: 4s;
+}
+@keyframes example {
+  from {background-color: black;}
+  to {background-color:dodgerblue;}
 }
 button:hover{
   transform: scale(1.1);
