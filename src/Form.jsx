@@ -7,7 +7,10 @@ function Form() {
   const [password, setPassword] = useState("");
   let [success,setSuccess]= useState(false);
   let [failure,setFailure]= useState(false);
+  let [hideit,setHideit]= useState(true);
   let [passerr,setErr]= useState(false);
+  let [showthis,setshow]=useState(false);
+  let [backbtn,setbtn]=useState(false);
   function changeName(event) {
     setName(event.target.value);
   }
@@ -22,9 +25,16 @@ function Form() {
     function buttonClicked(event){
       if((name && email && password)!=""){
         if(password.length>6){
+            
             setSuccess(true);
             setFailure(false);
             setErr(false);
+            setHideit(false);
+            setshow(true);
+            setbtn(true);
+            setEmail("");
+            setName("");
+            setPassword("");
           }
         else{
           setSuccess(false);
@@ -36,19 +46,30 @@ function Form() {
         setFailure(true);
       }
     }
-  
+    function backbtnClicked(event){
+      setHideit(true);
+      setshow(false);
+      setbtn(false);
+      setSuccess(false);
+      
+    }
   return (
        
       <div className="form">
       {success ? <div className="success-msg">Registered Successfully!!!</div> : null}
       {failure ? <div className="failure-msg">Error in Registering!!!</div> : null}
       {passerr ? <div className="pass-msg">Password length should be<br /> greater than 6!!!</div> : null}
-        <h1>Register Here!!!</h1>
-        <input onChange={changeName} type="text" value={name} placeholder="Enter Your Name" />
-        <input onChange={changeEmail} type="email" value={email} placeholder="Enter Your Email" required/>
-        <input onChange={changePassword} type="password" value={password} placeholder="Enter Your Password" required/>
-        <button type="button" onClick={buttonClicked}>Register</button>
+      {hideit ? <div className="form1"><h1 className="hideit">Register Here!!!</h1>
+        <input className="hideit" onChange={changeName} type="text" value={name} placeholder="Enter Your Name" />
+        <input className="hideit" onChange={changeEmail} type="email" value={email} placeholder="Enter Your Email" required/>
+        <input className="hideit" onChange={changePassword} type="password" value={password} placeholder="Enter Your Password" required/>
+        <button className="hideit" type="button" onClick={buttonClicked}>Register</button></div> : null}
+      {/*{showthis ? <div className="show"></div> : null}*/}
+      {backbtn ? <button className="goback" type="button" onClick={backbtnClicked}>Go back</button> : null}
       </div>
+      
+      
+      
   );
 }
 
